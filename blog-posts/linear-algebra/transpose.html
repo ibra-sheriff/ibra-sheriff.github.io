@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+        <link rel="stylesheet" href="./../../styles/main.css">
+        <link rel="icon" href="./../../images/favicon.ico">
+        <title>The Transpose of a Matrix A</title>
+    </head>
+    <body>
+        <div class="page-container-lg">
+            <h1 class="blog-post-h1">The Transpose of a Matrix A</h1>
+            <p>
+                The transpose of a matrix is found by interchanging its rows into columns or columns into rows. The transpose of the matrix is denoted by using the letter "T" in the superscript of the given matrix. For example, if "A" is the given matrix, then the transpose of the matrix is represented by \(A^T\).
+                <br><br>
+                If \(A = [a_{ij}]_{m \times n} \) then the transpose, \(A^T \), of \(A \) is \(A^T = [a_{ij}]_{n \times m} \)
+                <br><br>
+                Thus Transpose of a Matrix is defined as "A Matrix which is formed by turning all the rows of a given matrix into columns and vice-versa."
+                <br><br>
+                Given,<br>
+                \[ A = \begin{bmatrix}
+                a & b & c\\
+                d & e & f
+                \end{bmatrix}_{2 \times 3} \]
+                <br>then the transpose of A is,
+                \[ A^T = \begin{bmatrix}
+                a & d\\
+                b & e\\
+                c & f
+                \end{bmatrix}_{3 \times 2} \]
+            </p>
+
+            <h2 class="blog-post-h1">Now you try!</h2>
+            <p>
+                Click the arrow artifact on the left to see the solution.
+            </p>
+            <h4 class="blog-post-h1">Question 1</h4>
+            <details>
+                <summary>
+                    \[ A = \begin{bmatrix}
+                    2 & -9 & 3\\
+                    13 & 11 & -17\\
+                    3 & 6 & 15\\
+                    4 & 13 & 1
+                    \end{bmatrix}_{4 \times 3} \]
+                </summary>
+                <p>
+                    Solution:<br>
+                    \[ A^T = \begin{bmatrix}
+                    2 & 13 & 3 & 4\\
+                    -9 & 11 & 6 & 13\\
+                    3 & -17 & 15 & 1
+                    \end{bmatrix}_{3 \times 4} \]
+                </p>
+            </details>
+
+            <h4 class="blog-post-h1">Question 2</h4>
+            <details>
+                <summary>
+                    \[ A = \begin{bmatrix}
+                    22 & -21 & -99\\
+                    85 & 31 & -2\sqrt{3}\\
+                    7 & -12 & 57
+                    \end{bmatrix}_{3 \times 3} \]
+                </summary>
+                <p>
+                    Solution:<br>
+                    \[ A^T = \begin{bmatrix}
+                    22 & 85 & 7\\
+                    -21 & 31 & -12\\
+                    -99 & -2\sqrt{3} & 57
+                    \end{bmatrix}_{3 \times 3} \]
+                </p>
+            </details>
+
+            <h2>Some wonderful properties to keep in mind</h2>
+            <p>
+                (1) The transpose of the transpose of A is A: \((A^T)^T = A \)
+                <br><br>
+                (2) Addition Property of Transpose: \((A + B)^T = A^T + B^T \)
+                <br><br>
+                (3) Multiplication by Constant: \((kA)^T = kA^T \)
+                <br><br>
+                (4) Multiplication Property of Transpose: \((AB)^T = B^TA^T \)
+                <br><br>
+                (5) The determinant of a square matrix is the same as the determinant of its transpose: \(det(A^T) = det(A) \)
+                <br><br>
+                (6) The transpose of an invertible matrix is also invertible, and its inverse is the transpose of the inverse of the original matrix: \((A^T)^{-1} = (A^{-1})^T \)
+            </p>
+
+            <p>
+                For more background information the transpose check out this <a href="https://en.wikipedia.org/wiki/Transpose">Wikipedia article</a> or this article by <a href="https://byjus.com/maths/transpose-of-a-matrix/#:~:text=The%20transpose%20of%20a%20matrix%20is%20found%20by%20interchanging%20its,by%20A'%20or%20AT.">Byju's</a>.
+                <br><br>
+                <a href="./../linear-algebra.html">Go back to the Linear Algebra Home Page</a>
+            </p>
+
+        </div>
+    </body>
+</html>

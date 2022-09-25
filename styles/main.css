@@ -41,6 +41,16 @@
     margin-bottom: 2%;
 }
 
+.blog-post-info-sm {
+    font-style: italic;
+    font-size: small;
+}
+
+.blog-post-details {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
 @media only screen and (min-width: 768px) {
     /* For desktop: */
     .grid-container2 {
@@ -93,6 +103,16 @@
     width: 20%;
 }
 
+.skills-logo {
+    margin-top: 2%;
+    height: 60%;
+    width: 40%;
+}
+
+.skills-logo:hover {
+    padding: 2% 2% 2% 2%;
+}
+
 .section {
     padding: 10% 4% 8% 4%;
 }
@@ -127,6 +147,7 @@
 
 .blog-topic-image {
     border-radius: 5%;
+    width: 100%;
 }
 
 .blog-topic-image:hover {
@@ -171,6 +192,14 @@
     padding-right: 3%;
 }
 
+.footer-anchor {
+    color: white;
+}
+
+.footer-anchor:hover {
+    color: #808080;
+}
+
 .footer-headings {
     color: white;
     margin-bottom: 5%;
@@ -187,6 +216,25 @@
 .follow-me-link:hover {
     color: #848FFD;
     text-decoration: none;
+}
+
+.acknowledgements-heading {
+    margin-top: 5%;
+}
+
+.blog-post-h1 {
+    margin-bottom: 2%;
+}
+
+.blog-post-h2 {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.blog-post-video-container {
+    margin: auto;
+    width: 80%;
+    padding: 1%;
 }
 
 /* table related mathematical expressions */

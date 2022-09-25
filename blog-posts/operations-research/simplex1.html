@@ -11,39 +11,41 @@
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
         <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
         <link rel="stylesheet" href="./../../styles/main.css">
-        <link rel="icon" href="images/favicon.ico">
+        <link rel="icon" href="./../../images/favicon.ico">
         <title>Welcome to the Simplex Algorithm</title>
     </head>
     <body>
         <div class="page-container-lg">
-            <h1>Solving basic linear programming problems using the Simplex Algorithm</h1>
-            We have been given the following linear programming problem:
-            <br><br>
-            &nbsp; &nbsp; &nbsp; &nbsp;  max \(3x_1 + x_2 + 2x_3 \)
-            <br><br>
-            such that:
-            <br><br>
-            &nbsp; &nbsp; &nbsp; &nbsp; \(x_1 + x_2 + 3x_3 \le 30 \)<br>
-            &nbsp; &nbsp; &nbsp; &nbsp;  \(2x_1 + 2x_2 + 5x_3 \le 24 \)<br>
-            &nbsp; &nbsp; &nbsp; &nbsp;  \(4x_1 + x_2 + 2x_3 \le 36 \)<br>
-            &nbsp; &nbsp; &nbsp; &nbsp;  \(x_1, x_2, x_3 \ge 0 \)
-            <br><br>
-            First write it in <a href="canonical-form.html">Canonical form</a>:
-            <br><br>
-            &nbsp; &nbsp; &nbsp; &nbsp; \(z = 3x_1 + x_2 + 2x_3 \)<br>
-            &nbsp; &nbsp; &nbsp; &nbsp; \(x_1 + x_2 + 3x_3 + s_1 =  30 \)<br>
-            &nbsp; &nbsp; &nbsp; &nbsp;  \(2x_1 + 2x_2 + 5x_3 + s_2 = 24 \)<br>
-            &nbsp; &nbsp; &nbsp; &nbsp;  \(4x_1 + x_2 + 2x_3 + s_3 = 36 \)<br>
-            &nbsp; &nbsp; &nbsp; &nbsp;  \(x_1, x_2, x_3 \ge 0 \)
-            <br><br>
-            First we fill in the values into the tableu. Then we calculate <strong>g</strong> where \(g_i = \sum_{n=1}^{3} bv_n \times col_{in} \)
-            <br><br>
-            Here \(bv_n\) is the \(n\)th value in the basis so that the moment: \(bv_1 = s_1 \), \(bv_2 = s_2 \) and \(bv_3 = s_3 \).
-            <br>
-            \(col_{in} \) is the \(n\)th item in the \(i\)th column.
-            <br><br>
-            \(z_i\) is simply calculated by substracting the number at the top of the column from \(g_i\), for example \(z_1 = g_1 - 3\), \(z_2 = g_2 - 1\), and \(z_3 = g_3 - 2\).
-            <br><br>
+            <h1 class="blog-post-h1">Solving basic linear programming problems using the Simplex Algorithm</h1>
+            <p>
+              We have been given the following linear programming problem:
+              <br><br>
+              &nbsp; &nbsp; &nbsp; &nbsp;  max \(3x_1 + x_2 + 2x_3 \)
+              <br><br>
+              such that:
+              <br><br>
+              &nbsp; &nbsp; &nbsp; &nbsp; \(x_1 + x_2 + 3x_3 \le 30 \)<br>
+              &nbsp; &nbsp; &nbsp; &nbsp;  \(2x_1 + 2x_2 + 5x_3 \le 24 \)<br>
+              &nbsp; &nbsp; &nbsp; &nbsp;  \(4x_1 + x_2 + 2x_3 \le 36 \)<br>
+              &nbsp; &nbsp; &nbsp; &nbsp;  \(x_1, x_2, x_3 \ge 0 \)
+              <br><br>
+              First write it in <a href="canonical-form.html">Canonical form</a>:
+              <br><br>
+              &nbsp; &nbsp; &nbsp; &nbsp; \(z = 3x_1 + x_2 + 2x_3 \)<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; \(x_1 + x_2 + 3x_3 + s_1 =  30 \)<br>
+              &nbsp; &nbsp; &nbsp; &nbsp;  \(2x_1 + 2x_2 + 5x_3 + s_2 = 24 \)<br>
+              &nbsp; &nbsp; &nbsp; &nbsp;  \(4x_1 + x_2 + 2x_3 + s_3 = 36 \)<br>
+              &nbsp; &nbsp; &nbsp; &nbsp;  \(x_1, x_2, x_3 \ge 0 \)
+              <br><br>
+              First we fill in the values into the tableu. Then we calculate <strong>g</strong> where \(g_i = \sum_{n=1}^{3} bv_n \times col_{in} \)
+              <br><br>
+              Here \(bv_n\) is the \(n\)th value in the basis so that the moment: \(bv_1 = s_1 \), \(bv_2 = s_2 \) and \(bv_3 = s_3 \).
+              <br>
+              \(col_{in} \) is the \(n\)th item in the \(i\)th column.
+              <br><br>
+              \(z_i\) is simply calculated by substracting the number at the top of the column from \(g_i\), for example \(z_1 = g_1 - 3\), \(z_2 = g_2 - 1\), and \(z_3 = g_3 - 2\).
+              <br><br>
+            </p>
             <!-- Initial tableu -->
             <table class="table table-dark">
                 <tr>
@@ -119,7 +121,7 @@
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
-                    <td></td>
+                    <td>0</td>
                     <td></td>
                   </tr>
                    <!-- z -->
@@ -140,7 +142,7 @@
               <br><br>
               After selecting the smallest negative value we apply use that column to to do the Ratio Test. The smallest test aligns with our pivot row.
               <br>
-              Now use the third row as the pivot row and apply elementary row operations as in Gauss-Jordan to make the 4 a 1 and all the other values in the column 0.
+              Now use the third row as the pivot row and apply elementary row operations as in <a href="./../linear-algebra/gauss-jordan.html">Gauss-Jordan Elimination</a> to make the 4 a 1 and all the other values in the column 0.
               <br><br>
               <!-- Iteration 1 -->
             <table class="table table-dark">
@@ -217,7 +219,7 @@
                     <td>0</td>
                     <td>0</td>
                     <td>\(\frac{3}{4} \)</td>
-                    <td></td>
+                    <td>27</td>
                     <td></td>
                   </tr>
                    <!-- z -->
@@ -234,6 +236,219 @@
                     <td></td>
                   </tr>
               </table>
+
+              <p>
+                Rinse and repeat the steps as we still have a negative \(z_i \).
+              </p>
+               <!-- Iteration 2 -->
+              <table class="table table-dark">
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th>3</th>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>0</th>
+                  <th>0</th>
+                  <th>0</th>
+                  <th>-</th>
+                  <th>-</th>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Basis</td>
+                  <td>\(x_1 \)</td>
+                  <td>\(x_2 \)</td>
+                  <td>\(x_3 \)</td>
+                  <td>\(s_1 \)</td>
+                  <td>\(s_2 \)</td>
+                  <td>\(s_3 \)</td>
+                  <td>RHS</td>
+                  <td>Ratio Test</td>
+                </tr>
+                <!-- Row 1 -->
+                <tr>
+                  <td>0</td>
+                  <td>\(s_1 \)</td>
+                  <td>0</td>
+                  <td>\(-\frac{3}{16} \)</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>\(-\frac{5}{8} \)</td>
+                  <td>\(\frac{1}{16} \)</td>
+                  <td>\(\frac{69}{4} \)</td>
+                  <td>\(\frac{69}{4} \div -\frac{3}{16} = X \)</td>
+                </tr>
+                <!-- Row 2 -->
+                <tr>
+                    <td>2</td>
+                    <td>\(x_3 \)</td>
+                    <td>0</td>
+                    <td class="table-cell-green">\(\frac{3}{8} \)</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>\(\frac{1}{4} \)</td>
+                    <td>-\(\frac{1}{8} \)</td>
+                    <td>\(\frac{3}{2} \)</td>
+                    <td class="table-cell-blue">\(\frac{3}{2} \div \frac{3}{8} = 4\) &#x2190;</td>
+                  </tr>
+                  <!-- Row 3 -->
+                  <tr>
+                    <td>3</td>
+                    <td>\(x_1 \)</td>
+                    <td>1</td>
+                    <td>\(\frac{1}{16} \)</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>\(-\frac{1}{8} \)</td>
+                    <td>\(\frac{5}{16} \)</td>
+                    <td>\(\frac{33}{4} \)</td>
+                    <td>\(\frac{33}{4} \div \frac{1}{16} = 132 \)</td>
+                  </tr>
+                  <!-- g -->
+                  <tr>
+                    <td></td>
+                    <td>g</td>
+                    <td>3</td>
+                    <td>\(\frac{15}{16} \)</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>\(\frac{1}{8} \)</td>
+                    <td>\(\frac{11}{16} \)</td>
+                    <td>\(\frac{111}{14} \)</td>
+                    <td></td>
+                  </tr>
+                   <!-- z -->
+                   <tr>
+                    <td></td>
+                    <td>z</td>
+                    <td>0</td>
+                    <td class="table-cell-red">\(-\frac{1}{16} \)</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>\(\frac{1}{8} \)</td>
+                    <td>\(\frac{11}{16} \)</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+              </table>
+              <p>
+                Now for the final tableau!
+              </p>
+              <!-- Iteration 3 -->
+              <table class="table table-dark">
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th>3</th>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>0</th>
+                  <th>0</th>
+                  <th>0</th>
+                  <th>-</th>
+                  <th>-</th>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Basis</td>
+                  <td>\(x_1 \)</td>
+                  <td>\(x_2 \)</td>
+                  <td>\(x_3 \)</td>
+                  <td>\(s_1 \)</td>
+                  <td>\(s_2 \)</td>
+                  <td>\(s_3 \)</td>
+                  <td>RHS</td>
+                  <td>Ratio Test</td>
+                </tr>
+                <!-- Row 1 -->
+                <tr>
+                  <td>0</td>
+                  <td>\(s_1 \)</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>\(\frac{1}{2} \)</td>
+                  <td>1</td>
+                  <td>\(-\frac{1}{2} \)</td>
+                  <td>0</td>
+                  <td>18</td>
+                  <td></td>
+                </tr>
+                <!-- Row 2 -->
+                <tr>
+                    <td>1</td>
+                    <td>\(x_2 \)</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>\(\frac{8}{3} \)</td>
+                    <td>0</td>
+                    <td>\(\frac{2}{3} \)</td>
+                    <td>\(-\frac{1}{3} \)</td>
+                    <td>4</td>
+                    <td></td>
+                  </tr>
+                  <!-- Row 3 -->
+                  <tr>
+                    <td>3</td>
+                    <td>\(x_1 \)</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>\(-\frac{1}{6} \)</td>
+                    <td>0</td>
+                    <td>\(-\frac{1}{6} \)</td>
+                    <td>\(\frac{1}{3} \)</td>
+                    <td>8</td>
+                    <td></td>
+                  </tr>
+                  <!-- g -->
+                  <tr>
+                    <td></td>
+                    <td>g</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>\(\frac{13}{6} \)</td>
+                    <td>0</td>
+                    <td>\(\frac{1}{6} \)</td>
+                    <td>\(\frac{2}{3} \)</td>
+                    <td>28</td>
+                    <td></td>
+                  </tr>
+                   <!-- z -->
+                   <tr>
+                    <td></td>
+                    <td>z</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>\(\frac{1}{6} \)</td>
+                    <td>0</td>
+                    <td>\(\frac{1}{6} \)</td>
+                    <td>\(\frac{2}{3} \)</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+              </table>
+              <p>
+                Hence we have the optimal solution of 28 for the objective function and \(s_1 = 18, x_1 = 8, x_2 = 4, x_3 = s_1 = s_2 = 0 \).
+                <br><br>
+                It's important to note that we can apply our Simplex algorithm only for maximising problems, so if you have a minimising simply start by negating the objective function and then apply the algorithm, for example:
+                <br><br>
+                min \(w = 2x_1 + 3x_2 + 4x_3 \) is the same as max \(w = -2x_1 - 3x_2 - 4x_3 \). Just remember to multiply your final answer \(w\) for the objective function by minus 1.
+              </p>
+
+              <h2 class="blog-post-h2">Steps to follow</h2>
+              <p>
+                (1) Select the column of interest by selecting the column with the smallest negative \(z_i\).<br>
+                (2) Use the column of interest to run the Ratio test using the RHS. Note Ratio test that are negative or where the denominator is 0 are ignored as they are invalid.<br>
+                (3) The pivot row is the row with the smallest Ratio test value. The pivot point is the intersection of the column of interest and the row with the smallest Ratio test value.<br>
+                (4) Divide or multiply to make the pivot point 1 in the next tableau and then apply elementary row operations using the new values of the pivot value to make the values in the same column as the pivot point 0.<br>
+                (5) If all \(z_i \ge 0\) then we have found the optimal solution. If there is no valid Ratio test then the problem has no feasible solution, otherwise we do another iteration.
+              </p>
+
+              <p>
+                For more checkout <strong>Operations Research Applications and Algorithms by Wayne L. Winston(2003)</strong> page 140 section 4.5. Note that Wayne using a different tableau format so \(g_i \) and \(z_i \) will likely be in a different place but the theory is exactly the same.
+                <br><br>
+                <a href="./../operations-research.html">Go back to the Operations Research Home Page</a>
+              </p>
         </div>
     </body>
 </html>

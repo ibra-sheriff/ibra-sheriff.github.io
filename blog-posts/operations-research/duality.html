@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+        <link rel="stylesheet" href="./../../styles/main.css">
+        <link rel="icon" href="./../../images/favicon.ico">
+        <title>Duality!</title>
+    </head>
+    <body>
+        <div class="page-container-lg">
+            <h1 class="blog-post-h1">Duality: The dual of the primal problem</h1>
+        <p>
+            Associated with any LP is another LP, called the <strong>dual</strong>. This relation is important because it gives us interesting economic insights. Knowledge of duality will also provide additional insights into Sensitivity analysis.
+            <br><br>
+            If we say the primal LP gives us the quantities of goods, we can think of the dual LP giving us the price of the goods.
+            <br><br>
+            Let's take a look at an example, given the following LP(primal LP):
+            <br><br>
+            &nbsp; &nbsp; &nbsp; &nbsp;  max \(16x_1 + 10x_2 \)
+            <br><br>
+            such that:
+            <br><br>
+            &nbsp; &nbsp; &nbsp; &nbsp; \(2x_1 + 2x_2 \le 8 \)<br>
+            &nbsp; &nbsp; &nbsp; &nbsp;  \(2x_1 + x_2 \le 6 \)<br>
+            &nbsp; &nbsp; &nbsp; &nbsp;  \(x_1, x_2 \ge 0 \)
+            <br><br>
+            It's dual can be expressed as:
+            <br><br>
+            &nbsp; &nbsp; &nbsp; &nbsp;  min \(8y_1 + 6y_2 \)
+            <br><br>
+            such that:
+            <br><br>
+            &nbsp; &nbsp; &nbsp; &nbsp; \(2y_1 + 2y_2 \ge 16 \)<br>
+            &nbsp; &nbsp; &nbsp; &nbsp;  \(2y_1 + y_2 \ge 6 \)<br>
+            &nbsp; &nbsp; &nbsp; &nbsp;  \(y_1, y_2 \ge 0 \)
+            <br><br>
+            Hence we have for,
+            <br><br>
+            Primal, max \(cx \) &nbsp; &nbsp; &nbsp; &nbsp; => &nbsp; &nbsp; Dual, min \(yb \)<br>
+                    such that \(Ax \le b \) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;such that \(yA \ge c \)<br>
+                    \(x \ge 0 \) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; \(y \ge 0 \)<br>
+            <br><br>
+            Or,
+            <br><br>
+            Primal, min \(cx \) &nbsp; &nbsp; &nbsp; &nbsp; => &nbsp; &nbsp; Dual, max \(yb \)<br>
+            such that \(Ax \ge b \) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;such that \(yA \le c \)<br>
+            \(x \ge 0 \) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; \(y \ge 0 \)<br>
+        </p>
+
+        <h2 class="blog-post-h2">Steps to follow</h2>
+        <h3>Obtaining a min Dual LP when given a Primal max LP</h3>
+        <ul>
+            <li>
+                Change all the \( \ge \) constraints to \( \le \) constraints.
+            </li>
+            <li>
+                Create a variable for each constraint.
+            </li>
+            <li>
+                Get the <a href="../linear-algebra/transpose.html">transpose</a> of A.
+            </li>
+            <li>
+                All variables with sign \( \ge 0 \) becomes \( \ge \) constraints, while urs variables become = constraints.
+            </li>
+            <li>
+                All constraints that are \( \le \), becomes \( \ge 0 \) sign variables, while those that are = become urs variables.
+            </li>
+        </ul>
+
+        <h3>Obtaining a max Dual LP when given a Primal min LP</h3>
+        <ul>
+            <li>
+                Change all the \( \le \) constraints to \( \ge \) constraints.
+            </li>
+            <li>
+                Create a variable for each constraint.
+            </li>
+            <li>
+                Get the <a href="../linear-algebra/transpose.html">transpose</a> of A.
+            </li>
+            <li>
+                All variables with sign \( \ge 0 \) becomes \( \le \) constraints, while urs variables become = constraints.
+            </li>
+            <li>
+                All constraints that are \( \ge \), becomes \( \ge 0 \) sign variables, while those that are = become urs variables.
+            </li>
+        </ul>
+
+        <h2 class="blog-post-h2">Important Theorems and Derivations</h2>
+        <p>
+            Note: <strong>P</strong> = primal problem, <strong>D</strong> = dual of the primal problem
+            <br><br>
+            (1) The dual of the dual is the primal.
+            <br><br>
+            (2) Let \(x\) be a solution of (P), a maximising problem, and let \(y\) be a solution for (D), a minimising problem, them \(cx \le yb\).
+            <br><br>
+            (3) If the primal objective function is unbounded, the dual doesn't have any feasible solutions.
+            <br><br>
+            (4) If the dual objective function is unbounded, the primal doesn't have any feasible solutions.
+            <br><br>
+            (5) If the primal doesn't have any feasible solutions, the dual doesn't have any feasible solutions or it is unbounded.
+            <br><br>
+            (6) If the dual doesn't have any feasible solutions, the primal doesn't have any feasible solutions or it is unbounded.
+            <br><br>
+            (7) Optimality in primal <=> in dual.
+            <br><br>
+            (8) If \(x\) is a solution for (P), \(y\) is solution for (D), and \(cx = yb\), then \(x\) is optimal solution for (P) and \(y\) is the optimal solution for (D).
+            <br><br>
+            (9) If (P) has a feasible solution and (D) has a feasible solution, then both the primal and dual have an optimal solution and their objective function values are the same.
+            <br><br>
+            (10) <strong>Complementary Slackness</strong>: Consider \((P^*)\) and \((D^*)\) in the standard form above. Let \((x^*, \mu^*)\) be a solution for \((P^*)\) and let \((y^*, \lambda^*)\) be a solution for \((D^*)\). Then \((x^*, \mu^*)\) is optimal for \(P^*\) and \((y^*, \lambda^*)\) is optimal for \(D^*\) provided that \(y^*\mu^* + x^*\lambda^* = 0\).
+        </p>
+
+        <p>
+            A popular way to think about Duality is that the Primal problem relates to maximising the number of items that can be packed into a knapsack, while the Dual relates to minimising the open space.
+            <br><br>
+            For more checkout <strong>Operations Research Applications and Algorithms by Wayne L. Winston(2003)</strong> page 296 section 6.5.
+            <br><br>
+            <a href="./../operations-research.html">Go back to the Operations Research Home Page</a> or check out the <a href="dual-simplex-algorithm.html">Dual Simplex Algorithm</a>.
+        </p>
+        </div>
+    </body>
+</html>
