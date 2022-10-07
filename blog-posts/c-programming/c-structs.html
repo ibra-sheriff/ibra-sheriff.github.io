@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+        <link rel="stylesheet" href="./../../styles/main.css">
+        <link rel="icon" href="./../../images/favicon.ico">
+        <title>Grouping data in C using Structs</title>
+    </head>
+    <body>
+        <div class="page-container-lg">
+            <h1 class="blog-post-h1">Grouping data in C using Structs</h1>
+            <p>
+                Structs can be thought of as containers for a group of values. The idea is that the programmer would like to store these values together as they relate to the same entity. 
+                For example, think of a student, we can have the following data:
+            </p>
+            <ul>
+                <li>The student's first name</li>
+                <li>The student's first surname</li>
+                <li>The student's mark for the exam</li>
+                <li>The student's mark for the project</li>
+            </ul>
+            <p>
+                By using a struct we can easily keep track of the date relating to one student even for all the fields above. Things get mess when you think about storing this information in an array 
+                I mean the first name and surname are arrays of characteters already so you end up with an array of arrays! Just for the names! How about the marks? One array for the exam marks and another 
+                array for the project marks? I guess it could work but it will be difficult to program in this manner, it would be better to use an array of structs where each student's information is kept in a 
+                struct. This way we just access position \(i\) in the array and can get the student's first name, surname, exam mark and project mark.
+                <br><br>
+                It's important to note that structs are just data containers, so C stores the data for a specific entity in the same place, we cannot assign functions to this data as we do with Object Oriented Programming in Java.
+            </p>
+
+            <h2 class="blog-post-h2">Student Data Program</h2>
+            
+            <p>
+                We can define a struct to hold like so:
+                <br><br>
+                <code>
+                    1 struct student {<br>
+                    2     char* first_name;<br>
+                    3     char* surname;<br>
+                    4    int exam_mark;<br>
+                    5    int project_mark;<br>
+                    6 };<br>
+                </code>
+                <br><br>
+                We use the keyword <code>struct</code> and then enter the fields of the struct in the body of the struct. Here we put the type of the field e.g. char and the name of the field. Then we can then create a data entry for a student like so:
+                <br><br>
+                <code>
+                    struct student student1 = {"Ibra", "Sheriff", 100, 100};
+                </code>
+                <br><br>
+                We have loaded the data for the student Ibra Sheriff, we can then access the fields use a dot e.g. the exam mark <code>student1.exam_mark</code>, for reading the value or changing it(e.g. <code>student1.exam_mark = 98</code>). Just like that we are packing our student in an organised manner using structs!
+                <br><br>
+                Now you may have noticed that we have to use 3 words to create a struct instead of two with other variables, this can be avoided by use of the keyword <code>typedef</code> when defining the struct as seen below:
+                <br><br>
+                <code>
+                    1 typedef struct student {<br>
+                    2     char* first_name;<br>
+                    3     char* surname;<br>
+                    4     int exam_mark;<br>
+                    5    int project_mark;<br>
+                    6 }student;
+                </code>
+                <br><br>
+                Now can create a new struct like so:
+                <br><br>
+                <code>
+                    student student1 = {"Ibra", "Sheriff", 100, 100};
+                </code>
+                <br><br>
+                Here typedef has allowed us to rename <code>struct student</code> to <code>student</code> throughout the program, much neater! Accessing is as before.
+            </p>
+
+            <h2 class="blog-post-h2">Programs</h2>
+            <p>
+                You can download the programs that I ran over in this blog post.
+            </p>
+            <ul>
+                <li><a href="./../../programs/C/student.c">Student Data Program</li>
+            </ul>
+
+            <p>
+                For more checkout <strong>C Programming Language(2nd Edition) by Brian W. Kernighan and Dennis M. Ritchie</strong>.
+                <br><br>
+                <a href="./../c-posts.html">Go back to the C Programming Home Page</a>
+            </p>
+        </div>
+    </body>
+</html>

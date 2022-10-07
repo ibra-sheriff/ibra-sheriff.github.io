@@ -57,8 +57,73 @@
                 <br><br>
                 In line 18 we sum <code>a</code> and <code>b</code> and store the result in the variable <code>sum</code>. We the use the keyword <code>return</code> to return the actual sum of <code>a</code> and <code>b</code>. And that's it!
                 <br><br>
+                Let's recap, a after you declare your function at the top of your source file, you can to define it as below:
+                <br><br>
+                <code>
+                    &lt;return type&gt; <em>function_name </em><strong>(</strong> &lt;parameters&gt; <strong>)</strong> <strong>{</strong><br>
+                        &nbsp;&nbsp; &nbsp;&nbsp; &lt;function body&gt;<br>
+                    <strong>}</strong> <br>
+                </code>
+                <br>
                 It is important to note that the values <code>a</code> and <code>b</code> make use of the concept of <strong>pass-by-value</strong> so what ever changes we make to them in the functions will not persistent beyound the function. Hence we call these variables <strong>local variables</strong> that is to say that they only exist in the function, only the result survives upon return from the function.
             </p>
+
+            <h2 class="blog-post-h2">Local Variables vs. Global Variables</h2>
+            <div>
+                <p>
+                    If a variable is declared in a function is it called a <strong>local variable</strong> and it only exists in that context. If you leave that function then that variable is no longer assessible.
+                    <br><br>
+                    A <strong>glocal variable</strong> is declared outside any function usually at the top of the file or in a Header file, it can be accessed by any function that has assess to that file. Hence local variables are safer as you can 
+                    protect their values and guarantee their range, versus global variables where any function with access to it can change it.
+                </p>
+            </div>
+
+            <div id="oneplusone">
+                <h2 class="blog-post-h2">Header Files</h2>
+                <p>
+                    In the examples discussed on this blog you will see the following lines:<br>
+                    <code>
+                        1 #include &lt;stdio.h&gt;
+                        2 #include &lt;stdlib.h&gt; <br>
+                    </code>
+                    We have discussed how line one is us importing the Standard I/O(Input and Output) library so that you can use functions like <code>printf</code>, <code>scanf</code> etc. in the library. When we want to make use of memory management functions like <code>malloc</code> or <code>free</code>, we import them into our program from the Standard Library. 
+                    What if we want to share our functions with a friend or reuse functions in another project? We can do this using <strong>Header files</strong>. Header files allow us to put the declaration of functions, variables and structs in one file with the extension <strong>.h</strong>, and then we can import those functions, variables and structs into our program.
+                    <br><br>
+                    For example, for the One Plus One example above we can create the header file <strong>one_plus_one.h</strong> and add the following function declarations:
+                    <br><br>
+                    <code>
+                        1 int a_plus_b(int a, int b); <br>
+                        2 int a_minus_b(int a, int b); <br>
+                    </code>
+                    <br>
+                    The functions are defined as before in the file <strong>one_plus_one.c</strong> but we leave out the declarations from top of the file as they are now in the Header file. So the top of <strong>one_plus_one.c</strong> will now look like:
+                    <br><br>
+                    <code>
+                        1 #include &lt;stdio.h&gt; <br>
+                        2 #include "one_plus_one.h"
+                    </code>
+                    <br>
+                    We add line to import the function declarations into <strong>one_plus_one.c</strong> and then we can continue with the function definitions. This is how it works, (1) Create the header file, and (2) Import the Header file. Our compilation command now looks like:
+                    <br><br>
+                    <code>gcc -o one_plus_one one_plus_one.c one_plus_one.h</code>
+                    <br><br>
+                    We add the Header file when we are doing compilation do that the compiler can package it all for us into one executable. If you have a project which uses a Header file a lot, maybe this relates to helper functions for printing 
+                    values or testing, it may be useful to have the compiler import the related code once. We do this by changing how our Header file is defined, for the <strong>one_plus_one.h</strong> this will look like:
+                    <br><br>
+                    <code>
+                        1 #ifndef HEADER_FILE <br>
+                        2 #define HEADER_FILE <br>
+                        3
+                        4 int a_plus_b(int a, int b); <br>
+                        5 int a_minus_b(int a, int b); <br>
+                        6
+                        7 #endif <br>
+                    </code>
+                    <br>
+                    These lines relate to a conditional check, if the Header file has already been imported in the project then we do not import it again. This becomes relevant as your C projects get bigger and bigger and you start to include more and more functions in 
+                    different files.
+                </p>
+            </div>
 
 
             <h2 class="blog-post-h2">Programs</h2>
@@ -67,6 +132,7 @@
             </p>
             <ul>
                 <li><a href="./../../programs/C/arithmetic_func.c">Modular One plus One</a></li>
+                <li><a href="./../../programs/C/one_plus_one_with_header.zip">Modular One plus One with Header file</a> - remember to compile using <code>gcc -o arithmetic_func arithmetic_func.c arithmetic_func.h</code></li>
             </ul>
 
             <p>

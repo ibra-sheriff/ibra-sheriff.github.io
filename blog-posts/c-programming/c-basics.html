@@ -96,6 +96,26 @@
             </p>
             </div>
 
+            <h2 class="blog-post-h2">Casting</h2>
+            <p>
+                In most cases this topic is only relevant when working with doubles and integers. Since these types both relate to numeric types you can convert between the two, for example:
+                <br><br>
+                <code>
+                    1 int a = 5;<br>
+                    2 double b = (double) a;
+                    3 <br>
+                    4 int c = 10;<br>
+                    5 double d = (double) a / (double) c;<br>
+                    6 int e = (int) (c / b);<br>
+                </code>
+                <br>
+                We cast by putting the desired type in front of the variable we want to cast to another type. This is very useful when we want to divide integers get the decimal result, for example above we want the value of 
+                <code>d</code> to be 0.5 not 0. It will be zero because when we divide integers and get a result that is not a whole number C will truncate the decimal part to leave the whole number, so a number like 9.75 will become 
+                9 not 10 as we see when we do rounding. Make sure you watch out for this! It causes bugs in a lot of programs where mathematical precision is key.
+                <br>
+                Sometimes truncation is desired like in floor calculations in mathematics, then converting from double to integer like seen in line 6 is very useful.
+            </p>
+
             <h2 class="blog-post-h2">Commenting in C</h2>
             <p>
                 As programmers we find that is is useful to make notes of what our code does, report bugs or remind ourselves to do something. We use <strong>comments</strong> to do this and in C we have the following two options:
@@ -106,6 +126,7 @@
             </ul>
             <strong>Inline Comments</strong> are used when we want to write a comment on a single line while <strong>Multiline Comments</strong> when we want to write a long code over multiple lines. Let's see these comments in use in our Hello, World program:
             <p>
+                <br>
                 <code>
                     1 // import the Standard I/O library <br>
                     2 #include &lt;stdio.h&gt; <br>
