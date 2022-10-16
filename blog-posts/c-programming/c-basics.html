@@ -116,6 +116,30 @@
                 Sometimes truncation is desired like in floor calculations in mathematics, then converting from double to integer like seen in line 6 is very useful.
             </p>
 
+            <h2 class="blog-post-h2">Define Constants in C</h2>
+            <p>
+                The #define directive allows the definition of macros within your source code. You can use to define constants, variables that must hold values that do not change. You can use this to store values related to 
+                array sizes, dimensions and locations, values that never change. For example, the value of \(\pi \) nevers changes, this is an example of a value that we could store in a constant. You can define your constants 
+                after including your Header files. For example:
+                <br><br>
+                <code>
+                    1 #include &lt;stdio.h&gt; <br>
+                    2 #include &lt;stdlib.h&gt; <br>
+                    3 <br>
+                    4 #define BOARD_HEIGHT 4 <br>
+                    5 #define BOARD_WIDTH 5 <br>
+                    6 <br>
+                    7 int main() { <br>
+                    8 &nbsp;&nbsp; int area = BOARD_HEIGHT * BOARD_WIDTH;<br>
+                    9 &nbsp;&nbsp; printf("Area = %d", area);<br>
+                    10&nbsp;&nbsp; return 0;<br>
+                    11}
+                </code>
+                <br><br>
+                Here we have the dimensions of rectangle for a game board stored using the variables <code>BOARD_HEIGHT</code> and <code>BOARD_WIDTH</code> defined using macro definitions. It is important that we can only access the 
+                values of these variables, we cannot actually change them.
+            </p>
+
             <h2 class="blog-post-h2">Commenting in C</h2>
             <p>
                 As programmers we find that is is useful to make notes of what our code does, report bugs or remind ourselves to do something. We use <strong>comments</strong> to do this and in C we have the following two options:
