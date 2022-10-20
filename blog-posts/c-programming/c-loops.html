@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+        <link rel="stylesheet" href="./../../styles/main.css">
+        <link rel="icon" href="./../../images/favicon.ico">
+        <title>Loops in C</title>
+    </head>
+    <body>
+        <div class="page-container-lg">
+            <h1 class="blog-post-h1">Loops in C</h1>
+            <p>
+                The real world is full of repetition, I guess we are all creatures of routine, of habit. Everyday you wake up follow some sort of morning routine and then do to work or school and then end the day at home after supper. So if we look at your year it would look something like:
+                <br><br>
+                <code>
+                    day = 1 <br>
+                    <strong>if day is within the year i.e. 365 or less then</strong> <br>
+                    &nbsp; &nbsp; wake <br>
+                    &nbsp; &nbsp; execute morning routine <br>
+                    &nbsp; &nbsp; go to school/work <br>
+                    &nbsp; &nbsp; supper <br>
+                    &nbsp; &nbsp; evening routine e.g. family time, television, gaming etc. <br>
+                    &nbsp; &nbsp; sleep <br>
+                    &nbsp; &nbsp; move day to next day i.e. day = day + 1 <br>
+                </code>
+                <br><br>
+                Many of us execute such an program daily especially during weekdays. So we are doing the same tasks, in the same order each day and then changing the day. We have a loop! We are doing the same tasks in the same order for 365 days so we can use a loop which has a counter and starts from 1 and ends on 365. 
+                In C we can do this with using <code>for</code> loops, <code>while</code> loops or <code>do/while</code> loops. The loops have the following forms:
+                <br><br>
+                <code>
+                    // for loop <br>
+                    for (create counter; boolean condition; incrementer) { <br>
+                    &nbsp; &nbsp; do_task(); <br>
+                    }
+                </code>
+                <br><br>
+                <code>
+                    // while loop <br>
+                    create counter; <br>
+                    while (boolean condition) { <br>
+                    &nbsp; &nbsp; do_task(); <br>
+                    &nbsp; &nbsp; incrementer; <br>
+                    }
+                </code>
+                <br><br>
+                <code>
+                    // do/while loop <br>
+                    create counter; <br>
+                    do { <br>
+                    &nbsp; &nbsp; do_task(); <br>
+                    &nbsp; &nbsp; incrementer; <br>
+                    } while (boolean condition);
+                </code>
+                <br><br>
+                So each loop has a <strong>counter</strong>, a variable that keeps track of which iteration of the loop we are currently in, this would be the day of the year from our example above. Then the <strong>boolean condition</strong> is used to determine if the loop should keep running, when the boolean condition becomes false then the loop stops exceuting, for example when the 365 days of the year are over. 
+                The last part of any loop is the <strong>incrementer</strong> which is used to move the loop along, this would move us to the next day, usually the incrementer increases or decreases the counter by some number, commonly one.
+                <br><br>
+                The next sections will show you how to write a loop that displays the numbers -5 to 12 on the screen for a user to see, the different flavours of loops in C will be explored.
+            <p>
+            
+            <h2 class="blog-post-h1">The for Loop</h2>
+            <p>
+                <code>for</code> loops are the most commonly used because they allow you to handle all 3 elements of a loop in one line i.e. the <strong>create counter</strong>, <strong>boolean condition</strong> and <strong>incrementer</strong>.
+                <br><br>
+                <code>
+                    // for loop version <br>
+                    for (int m = -5; m <= 12; m++) { <br>
+                    &nbsp; &nbsp; printf("%d ", m); <br>
+                    } <br>
+                    printf("\n");
+                </code>
+                <br><br>
+                Output:
+                <br><br>
+                <code>
+                    -5 -4 -3 -2 -1 0 1 2 3 4 5 6 7 8 9 10 11 12
+                </code>
+            </p>
+
+            <h2 class="blog-post-h1">The while Loop</h2>
+            <p>
+                <code>while</code> loops are useful for situations where you want to manipulate the <strong>incrementer</strong> in a special way or when you want to run an infinite loop.
+                <br><br>
+                <code>
+                    // while loop version <br>
+                    int k = -5; // create counter <br>
+                    while (k <= 12) { // boolean condition <br>
+                    &nbsp; &nbsp; printf("%d ", k); <br>
+                    &nbsp; &nbsp; k = k + 1; // incrementer<br>
+                    } <br>
+                    printf("\n");
+                </code>
+                <br><br>
+                Output:
+                <br><br>
+                <code>
+                    -5 -4 -3 -2 -1 0 1 2 3 4 5 6 7 8 9 10 11 12
+                </code>
+            </p>
+
+            <h2 class="blog-post-h1">The do/while Loop</h2>
+            <p>
+                <code>do/while</code> loops are not commonly used but can be useful in situations where you want to execute a task at least one. This is because the <code>do/while</code> loops checks the boolean condition after executing the tasks in the body of the loop 
+                unlike <code>for</code> or <code>while</code> loops that check the boolean condition first before running the loop.
+                <br><br>
+                <code>
+                    // do-while loop version <br>
+                    int l = -5; // create counter <br>
+                    do { <br>
+                    &nbsp; &nbsp; printf("%d ", l); <br>
+                    &nbsp; &nbsp; l = l + 1; // incrementer <br>
+                    } while (l <= 12); // boolean condition<br>
+                    printf("\n");
+                </code>
+                <br><br>
+                Output:
+                <br><br>
+                <code>
+                    -5 -4 -3 -2 -1 0 1 2 3 4 5 6 7 8 9 10 11 12
+                </code>
+            </p>
+
+            <h2 class="blog-post-h1">We can do a lot with Loops...</h2>
+            <p>
+                In the situations above you simply create a counter, print the value of the counter and then stop the loop once the counter gets larger than a given number. But we can do more with our counter, we can use it to access arrays, process even or odds values, repeat 
+                the same task multiple times etc. How about a video game where we want to allow a user to pause the game? The user can pause the game for 5 minutes, 1 hour or even for a past a day, how can we handle this? How about an infinite loop?
+                <br><br>
+                <code>
+                    while(1) { <br>
+                    &nbsp; &nbsp; show_pause_screen(); <br>
+                    }
+                </code>
+                <br><br>
+                But we want to break the infinite loop when the player clicks a button to resume the game. How about using the <code>break</code> keyword.
+                <br><br>
+                <code>
+                    while(1) { <br>
+                    &nbsp; &nbsp;if (resume_button_pressed()) {<br>
+                    &nbsp; &nbsp; &nbsp; &nbsp; // resume the game <br>
+                    &nbsp; &nbsp; &nbsp; &nbsp; break;<br>
+                    &nbsp; &nbsp; } else {<br>
+                    &nbsp; &nbsp; &nbsp; &nbsp;show_pause_screen(); <br>
+                    &nbsp; &nbsp; }<br>
+                    }
+                </code>
+                <br><br>
+                We set the boolean condition to always true and then when the use presses the resume button on the pause menu of the game we break out of the pause game loop and continue the game. Just like that, the <code>break</code> keyword can be useful if we want to spin indefinitely until a user does something.
+                <br><br>
+                Another thing to note is that you can setup multiple counters and make use of more complex boolean expression, for example:
+                <br><br>
+                <code>
+                    int i = 0;<br>
+                    int j = 0;<br>
+                    int k = 0;<br>
+                    while((i % 2 == 0) && j < 10) {<br>
+                        &nbsp; &nbsp; if (i % 2) {<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp; j = j + 1;<br>
+                        &nbsp; &nbsp; }<br>
+                        &nbsp; &nbsp; i = i + 1;<br>
+                        &nbsp; &nbsp; printf("Iteration %d\n", k);<br>
+                        &nbsp; &nbsp; k = k + 1;<br>
+                    }
+                </code>
+                <br><br>
+                Here we only increment <code>j</code> when <code>i</code> is even and have a more complex stop condition where <code>i</code> must be odd and <code>j</code> 10 or bigger. You can involve as many comparisons in your boolean condition, just note that the more complex you make your boolean condition the harder it can be to determine what your loop is going to do. 
+                We can use multiple counters and complex boolean condition with any of the loops. What about a loop in a loop? One year is just part of many years of your life, so we have the loop for your life overall and a loop for the actual days of the year. This is what we call a <strong>nested</strong> loop. <strong>Nested</strong> loops are commonly used to peruse 
+                multidimensional data e.g. a 2D array. For example:
+                <br><br>
+                <code>
+                    int rows = 10; <br>
+                    int cols = 8; <br>
+                    for (int i = 0; i < rows; i++) { // increment the row position <br>
+                    &nbsp; &nbsp; for (int j = 0; j < cols; j++) { // increment the column position <br>
+                    &nbsp; &nbsp; &nbsp; &nbsp; printf("%d ", board_array[i][j]); <br>
+                    &nbsp; &nbsp; } <br>
+                    &nbsp; &nbsp; printf("\n"); <br>
+                    }
+                </code>
+                <br><br>
+                The example above shows how we can print the values in a 2D array that has 10 rows and 8 columns. We use the first loop to explore the rows and the second loop to explore the columns of a given row.
+            </p>
+
+
+            <h2 class="blog-post-h2">Programs</h2>
+            <p>
+                You can download the programs that I ran over in this blog post.
+            </p>
+            <ul>
+                <li><a href="./../../programs/C/loops.c">Loops in C</a></li>
+            </ul>
+
+            <p>
+                For more checkout <strong>C Programming Language(2nd Edition) by Brian W. Kernighan and Dennis M. Ritchie</strong>.
+                <br><br>
+                <a href="./../c-posts.html">Go back to the C Programming Home Page</a>
+            </p>
+        </div>
+    </body>
+</html>

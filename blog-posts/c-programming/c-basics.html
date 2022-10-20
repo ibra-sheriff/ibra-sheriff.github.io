@@ -96,6 +96,48 @@
             </p>
             </div>
 
+            <h2 class="blog-post-h2">Incrementing and Decrementing Shorthands</h2>
+            <p>
+                Usually you can increase an integer <code>i</code> by one as follows: <code>i = i + 1</code>. We can decrease it by one as follows: <code>i = i - 1</code>. C offers us shorthands for such <strong>Incrementing</strong> and <strong>Decrementing</strong>. So for increasing <code>i</code> by one we have:
+                <br><br>
+                <code>
+                    i++;<br>
+                </code>
+                <br><br>
+                For decreasing <code>i</code> by one we have:
+                <br><br>
+                <code>
+                    i--;<br>
+                </code>
+                <br><br>
+                Here is where it gets weired, we can also do the following:
+                <br><br>
+                <code>
+                    ++i; // increment i by 1<br>
+                    --i; // decrement i by 1
+                </code>
+                <br><br>
+                What is the difference? If you add the symbols before <code>i</code> the incrementing/decrementing is done first and then the value of <code>i</code> used. If you add the symbols after <code>i</code> the incrementing/decrementing after using the value of <code>i</code>. This matters when we need to use the value of <code>i</code> for accessing data or in a conditional statement as 
+                the order can affect the data that will be accessed or the branching of the program. Consider this:
+                <br><br>
+                <code>
+                    int marks[5] = {66, 78, 90, 91, 55};<br>
+                    int i = 2;<br>
+                    printf("%d\n", marks[i++]);<br>
+                    i = 2;<br>
+                    printf("%d\n", marks[++i]);
+                </code>
+                <br><br>
+                The program will output:
+                <br><br>
+                <code>
+                    90 <br>
+                    91 <br>
+                </code>
+                <br><br>
+                So in the first case we accessed the array position 2 and then incremented <code>i</code>, while in the second case we first increment <code>i</code> and accessed the integer at array index 3!
+            </p>
+
             <h2 class="blog-post-h2">Casting</h2>
             <p>
                 In most cases this topic is only relevant when working with doubles and integers. Since these types both relate to numeric types you can convert between the two, for example:

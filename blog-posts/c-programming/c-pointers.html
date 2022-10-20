@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+        <link rel="stylesheet" href="./../../styles/main.css">
+        <link rel="icon" href="./../../images/favicon.ico">
+        <title>C Pointers</title>
+    </head>
+    <body>
+        <div class="page-container-lg">
+            <h1 class="blog-post-h1">C Pointers</h1>
+            <p>
+                No discussion of C is ever complete without discussing <strong>Pointers</strong>. Pointers remain the biggest talking point when it comes to programming using the C language. Pointers support memory manipulation and allow us to dynamically create variables, namely arrays.
+                <br>
+                Let's recap, remmeber that you can get the memory address of a variable with the reference operator <code>&</code>. If we run the following code fragment:
+                <br><br>
+                <code>
+                    int my_age = 43;
+                    <br><br>
+                    printf("%d\n", my_age);<br>
+                    printf("%p\n", &my_age);
+                </code>
+                <br><br>
+                We get the following output:
+                <br><br>
+                <code>
+                    43<br>
+                    0x7ffe5367e044)
+                </code>
+                <br><br>
+                So we see that in the normal case the actual value of the variable is printed but in the second case the memory adress of the <code>my_age</code> is displayed. <code>&my_age</code> is also known as a <strong>pointer</strong>.
+                <br><br>
+                A <strong>pointer</strong> is a variable that stores the memory address of another variable as its value. Hence a pointer is like having an address to a house, where the house stores the actual data. A pointer variable points to a data type (like <code>int</code>) of the same type, and is created with the <code>*</code> operator. The address of the variable you are working with is assigned to the pointer. Let's look at the following code fragment to illustrate this:
+                <br><br>
+                <code>
+                    int my_age = 43; <br>
+                    int* ptr = &my_age; <br>
+                    <br><br>
+                    printf("%d\n", my_age);
+                    <br><br>
+                    printf("%p\n", &my_age);
+                    <br><br>
+                    printf("%p\n", ptr);
+                </code>
+                <br><br>
+                We start by creating an integer variable to hold the age of 43 and then a pointer variable, with the name <code>ptr</code>, that stores the address of <code>my_age</code>. We get the following output when we run the code fragment:
+                <br><br>
+                <code>
+                    43<br>
+                    0x7ffe5367e044<br>
+                    0x7ffe5367e044
+                </code>
+                <br><br>
+                So the first line of output relates to the value of the <code>my_age</code> variable, the next line it's memory address and the last line shows the value that <code>ptr</code> is holding, the address to <code>my_age</code>.
+                <br><br>
+                Let's recap that, first we create a pointer variable with the name <code>ptr</code>, that points to an <code>int</code> variable (<code>my_age</code>). Note that the type of the pointer has to match the type of the variable you are working with. Use the <code>&</code> operator to store the memory address of the <code>my_age</code> variable, and assign it to the pointer. Now, <code>ptr</code> holds the value of <code>my_age</code>'s memory address.
+            <p>
+            
+            <h2 class="blog-post-h1">Dereferencing: turning memory addresses into stored values</h2>
+            <p>
+                In the previous, we used the pointer variable to get the memory address of a variable (used together with the <code>&</code> <strong>reference</strong> operator). However, you can also get the value of the variable the pointer points to, by using the <code>*</code> operator (the <strong>dereference</strong> operator):
+                <br><br>
+                <code>
+                    int my_age = 43;
+                    int* ptr = &my_age;
+                    <br><br>
+                    printf("%p\n", ptr);
+                    <br><br>
+                    printf("%d\n", *ptr);
+                </code>
+                <br><br>
+                We declare the variable <code>my_age</code> and then declare a pointer <code>ptr</code> with the memory address to <code>my_age</code>. The program outputs:
+                <br><br>
+                <code>
+                    0x7ffe5367e044<br>
+                    43
+                </code>
+                <br><br>
+                The first line relates to a <strong>Reference</strong>: the memory address of <code>my_age</code> stored in the pointer <code>ptr</code>, while the second line of output relates to a <strong>Dereference</strong>: the value stored at the <code>my_age</code> address extracted via the pointer <code>ptr</code>. 
+                Hence we see how <code>*</code> can be used to deference a pointer to collect the value stored at the memory address.
+                <br><br>
+                Note that the <code>*</code> sign can be confusing here, as it does two different things in our code:
+            </p>
+            <ul>
+                <li>Wen used in declaration (<code>int* ptr</code>), it creates a <strong>pointer variable</strong>.</li>
+                <li>When not used in declaration, it act as a <strong>dereference operator</strong>.</li>
+            </ul>
+
+            <h2 class="blog-post-h1">Memory Management</h2>
+            <p>
+                You may want to create an array of integers or allocate memory for a struct in your program. To allocate memory we use <code>malloc</code> from the Standard Library hence add <code>#include &lt;stdlib.h&gt;</code>. We have to provide the required number of bytes for what we want to store. For example for an <code>int</code>:
+                <br><br>
+                <code>
+                    int* a = malloc(sizeof(int));<br>
+                    // set the value of a <br>
+                    *a = 43;
+                    <br><br>
+                    // memory address of a<br>
+                    printf("%p\n", a);<br>
+                    // values of a<br>
+                    printf("%d\n", *a);<br>
+                </code>
+                <br><br>
+                Here we ask for memory to store one integer. The <code>sizeof</code> function returns the number of bytes required to store an integer on the Operating System, this makes our code portable versus explicitly asking for 32bits. What happens if we are on a system where integers are 64bits?
+                <br><br>
+                If we run the program above we get the following output:
+                <br><br>
+                <code>
+                    0x5654027fe2a0<br>
+                    43
+                </code>
+                <br><br>
+                To <strong>"deallocate"</strong> memory we have to use the <code>free</code> function in the Standard Library. We have to do this as C unlike languages like Python and Java does not have a garbage collector and hence no memory management. If we do not use <code>free</code> it's possible to use up all the memory on the computer. 
+                And trust me, I have done this before when doing a project at University, I had to create arrays to represent a game board during a min-max algorithm, I kept allocating memory for the game board arrays and never deallocating. Eventually the computer ran out of memory and froze! We call these <strong>memory leaks</strong>, memory that we allocate and never deallocate so that it can be reused. 
+                So whenever you use <code>malloc</code> ensure that you write the code using <code>free</code> to release that memory after use. Note if you prematurely deallocate memory and try use values from that memory you will get a <strong>segmentation falut</strong>, so ensure to deallocate when you are done with those values. If you <code>free</code> multiple times you will receive the error <strong>double free</strong>.
+            </p>
+
+            <h2 class="blog-post-h1">Pointer Use Cases: Array of Integers</h2>
+            <p>
+                What we want to dynamically create an array of size <em>n</em> during run time. Let's say that <em>n = 10</em>. We want to do this because <em>n</em> can vary,l let's say that it's set by the user and the each user may set a different value. How can tackle this issue? Easy! Pointers! 
+                Simply allocate memory for <em>n</em> integers during run time and deallocate this memory when we are done. And what's amazing is that we can use array syntax to then access the values of the pointers and change them! Let's see how this works in the following example:
+                <br><br>
+                <code>
+                    1 #include &lt;stdio.h&gt; <br>
+                    2 #include &lt;stdlib.h&gt; <br>
+                    3 <br>    
+                    4 int main() { <br>
+                    5 &nbsp; &nbsp; int i; <br>
+                    6 <br>    
+                    7 &nbsp; &nbsp; // allocate memory for 10 integers <br>
+                    8 &nbsp; &nbsp; int* nums = malloc(sizeof(int) * 10); <br>
+                    9 &nbsp; &nbsp; for (i = 0; i < 10; i++) { <br>
+                    10 &nbsp; &nbsp; &nbsp; &nbsp; // set a value for each integer <br>
+                    11 &nbsp; &nbsp; &nbsp; &nbsp; nums[i] = i; <br>
+                    12 &nbsp; &nbsp; } <br>
+                    13 &nbsp; &nbsp; <br>  
+                    14 &nbsp; &nbsp; // display the values of the pointer <br>
+                    15 &nbsp; &nbsp; for (i = 0; i < 10; i++) { <br>
+                    16 &nbsp; &nbsp; &nbsp; &nbsp; printf("%d ", nums[i]); <br>
+                    17 &nbsp; &nbsp; } <br>
+                    18 &nbsp; &nbsp; printf("\n"); <br>
+                    19 &nbsp; &nbsp; <br>   
+                    20 &nbsp; &nbsp; return 0; <br>
+                    21 }
+                </code>
+                <br><br>
+                The following ouput is seen:
+                <br><br>
+                <code>
+                    0 1 2 3 4 5 6 7 8 9 <br>
+                </code>
+                <br><br>
+                Hence we can create a program where we can dynamically create an array during run time. There is no need to know the size of the array before running the program.
+            </p>
+
+            <h2 class="blog-post-h1">Pointer Use Cases: Structs</h2>
+            <p>
+                Given the following struct:
+                <br><br>
+                <code>
+                    typedef struct Node {<br>
+                    &nbsp; &nbsp; int value;<br>
+                    &nbsp; &nbsp; struct Node *next;<br>
+                    } Node;
+                </code>
+                <br><br>
+                We can define a function to allocate memory for a new Node struct:
+                <br><br>
+                <code>
+                    Node *create_node(int val) {<br>
+                    &nbsp; &nbsp; Node *p = malloc(sizeof(Node));<br>
+                    &nbsp; &nbsp; p->value = val;<br>
+                    &nbsp; &nbsp; p->next = NULL;
+                    <br><br>
+                    &nbsp; &nbsp; return p;<br>
+                    }
+                </code>
+                <br><br>
+                Then late call <code>free</code> for the <code>Node n</code> that we create. But it's important to note that you need to not only free <code>n</code> that you created but it's <code>next</code> too is there is. 
+                Also note the use of <code>NULL</code>, it's important to set some values for our pointers so that we are not working with garbage values. If you are working with numbers make them zero, if it's a pointer make it <code>NULL</code> so that in conditional statements you do not get surprising results.
+            </p>
+
+
+            <h2 class="blog-post-h2">Programs</h2>
+            <p>
+                You can download the programs that I ran over in this blog post.
+            </p>
+            <ul>
+                <li><a href="./../../programs/C/my_age.c">My Age</a></li>
+                <li><a href="./../../programs/C/my_age2.c">My Age with Pointer</a></li>
+                <li><a href="./../../programs/C/my_age_dereference.c">My Age with Dereferencing</a></li>
+                <li><a href="./../../programs/C/integer_allocation.c">Allocating memory for an integer</a></li>
+                <li><a href="./../../programs/C/array_allocation.c">Allocating memory for an "array of integers"</a></li>
+                <li><a href="./../../programs/C/linked_list.c">Allocating memory for structs</a></li>
+            </ul>
+
+            <p>
+                For more checkout <strong>C Programming Language(2nd Edition) by Brian W. Kernighan and Dennis M. Ritchie</strong>.
+                <br><br>
+                <a href="./../c-posts.html">Go back to the C Programming Home Page</a>
+            </p>
+        </div>
+    </body>
+</html>
