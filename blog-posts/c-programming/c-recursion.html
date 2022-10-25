@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+        <link rel="stylesheet" href="./../../styles/main.css">
+        <link rel="icon" href="./../../images/favicon.ico">
+        <title>Recursion in C</title>
+    </head>
+    <body>
+        <div class="page-container-lg">
+            <h1 class="blog-post-h1">Recursion in C</h1>
+            <p>
+                <strong>Recursion</strong> is the process in which a function calls itself directly or indirectly is called recursion and the corresponding function is called a recursive function. Using a recursive algorithm, certain problems can be solved quite easily. 
+                Examples of such problems are <strong>Towers of Hanoi(TOH)</strong>, <strong>Inorder/Preorder/Postorder Tree Traversals</strong>, <strong>Depth-first Search(DFS) of Graph</strong>, etc. A recursive function solves a particular problem by calling a copy of itself and solving smaller subproblems of the original problems. Many more recursive calls can be generated as and when required. 
+                It is essential to know that we should provide a certain case in order to terminate this recursion process. So we can say that every time the function calls itself with a simpler version of the original problem.
+                <br><br>
+                Recursion is an amazing technique with the help of which we can reduce the length of our code and make it easier to read and write. It has certain advantages over the iteration technique. A task that can be defined with its similar subtask, recursion is one of the best solutions for it. For example, the Factorial of a number.
+                <br><br>
+                Properties of Recursion:
+            </p>
+            <ul>
+                <li>Performing the same operations multiple times with different inputs.</li>
+                <li>In every step, we try smaller inputs to make the problem smaller.</li>
+                <li>Base condition is needed to stop the recursion otherwise infinite loop will occur.</li>
+            </ul>
+            <p>
+                Recursion uses more memory, because the recursive function adds to the stack with each recursive call, and keeps the values there until the call is finished. The recursive function uses LIFO(Last-in-first-out) Structure just like the <a href="https://www.geeksforgeeks.org/stack-data-structure/">stack data structure</a>.
+            </p>
+
+            <h2 class="blog-post-h2">The Form of a Recursion Function</h2>
+            <p>
+                All recursive functions have the following form:
+                <br><br>
+                <code>
+                    <strong>if</strong> Base Case: return;
+                    <br><br>
+                    <strong>else</strong> execute operation; // also known as the Recursive Case/Step
+                </code>
+                <br><br>
+                The <strong>Base Case</strong>(also known as the Base Step) tends to be a conditional statement that is used to determine when to start returning a result or when to stop executing an operation. If the Base Case it not satisfied we execute an operation and call the function again continuining the <em>"recursive loop"</em> i.e. we add another function call to the stack(Recusive Case). 
+                Hence the base case is a way to return without making a recursive call. In other words, it is the mechanism that stops this process of ever more recursive calls and an ever growing stack of function calls waiting on the return of other function calls. A proper recursive function must always have a base case.
+                <br><br>
+                Let's take a look at how we can calculate the factorial of a given number \(n\) using recursion:
+                <br><br>
+                <code>
+                    int factorial(int n) { <br>
+                    &nbsp; &nbsp; if (n < = 1) // base case <br>
+                    &nbsp; &nbsp; &nbsp; &nbsp; return 1; <br>
+                    &nbsp; &nbsp; else <br>
+                    &nbsp; &nbsp; &nbsp; &nbsp; return n * factorial(n-1); <br>  
+                    }
+                </code>
+                <br></br>
+                Let's take a look at the case where \(n = 5\):
+                <br></br>
+                <code>
+                    n = 5: factorial(5); <br>
+                    Base Case false so we have 5 * factorial(4);<br>
+                    n = 4: Base Case false so we have 4 * factorial(3);<br>
+                    n = 3: Base Case false so we have 3 * factorial(2);<br>
+                    n = 2: Base Case false so we have 2 * factorial(1);<br>
+                    n = 1: Base Case return 1;
+                    <br><br>
+                    now start popping the function calls of the stack
+                    <br><br>
+                    function call with n = 2: return 2;
+                    function call with n = 3: return 6;<br>
+                    function call with  n = 4: return 24;<br>
+                    function call with n = 5: return 120;
+                </code>
+                <br></br>
+                So we get that \(5! = 120\). Amazing right. This may be confusing so make sure you run through that case again and consider other cases and see what happens.
+            </p>
+
+            <h2 class="blog-post-h2">Advantages and Disadvantages of Recursion</h2>
+            <p>
+                As with all concepts in programming, recursion has its perks and its downside. Though it can lead to compact and easy to debug code, it can be slower due to the function call stack that has to be maintained. Let's take a look at advantages and disadvantages of recursion in this section.
+                <br><br>
+                Advantages of Recursion include:
+            </p>
+            <ul>
+                <li>Recursion adds clarity and (sometimes) reduces the time needed to write and debug code (but doesn't necessarily reduce space requirements or speed of execution).</li>
+                <li>To solve such problems which are naturally recursive such as the Tower of Hanoi.</li>
+                <li>Extremely useful when applying the same solution.</li>
+                <li>Recursion reduce the length of code.</li>
+                <li>It is very useful in solving the data structure related problems. Especially tree based problems, in fact it performs better in solving problems based on tree structures.</li>
+            </ul>
+            <p>
+                Disadvantages of Recursion include:
+            </p>
+            <ul>
+                <li>It is usually slower due to the overhead of maintaining the stack.</li>
+                <li>It may require a lot of memory space to hold intermediate results on the system stacks.</li>
+                <li>Though programs using recursion can be compact some are hard to analyse or understand.</li>
+                <li>It is not more efficient in terms of space and time complexity.</li>
+                <li>The computer may run out of memory if the recursive calls are not properly checked.</li>
+            </ul>
+
+            <h2 class="blog-post-h2">If it can be done with a loop then it can be done with Recursion!</h2>
+            <p>
+                If something can be done with a loop then it can be done with recursion. In fact functional languages tend to rely on recursion not loops. Check this out:
+                <br><br>
+                <code>
+                    void print_arr_helper(int values[], int arr_length, int i) { <br>
+                    &nbsp; &nbsp; if (i == arr_length) return; // base case i.e. we are at the end of the array<br>
+                    &nbsp; &nbsp; printf("%d ", values[i]); <br>
+                    &nbsp; &nbsp; print_arr_helper(values, arr_length, i + 1); <br>
+                    }
+                </code>
+                <br><br>
+                This function can be used to print the values in the given array, we simply call the function with our array, the number of items in the array and provide \(i = 0\) (just like in a <code>for</code> loop) to get the process started. Just like that we have used recursion 
+                instead of a loop to iterate our data. You can apply this in any situation, whether its iterating data, counting for a process, or repeating a task, recursion can get it done. We just tend to overdo it with recursion because it can overcomplicate code at times, using a loop tends to be more intuitive for people.
+                <br><br>
+                So what are the differences between using Recursion vs. Loop Iteration?
+            </p>
+            <table class="table table-dark">
+                <tr>
+                    <th>Recursion</th>
+                    <th>Loop Iteration</th>
+                </tr>
+                <tr>
+                    <td>Terminates when the base case becomes true.</td>
+                    <td>Terminates when the condition becomes false.</td>
+                </tr>
+                <tr>
+                    <td>Used with functions.</td>
+                    <td>Used with loops.</td>
+                </tr>
+                <tr>
+                    <td>Every recursive call needs extra space in the stack memory.</td>
+                    <td>Every iteration does not require any extra space.</td>
+                </tr>
+                <tr>
+                    <td>Smaller code size.</td>
+                    <td>Larger code size.</td>
+                </tr>
+            </table>
+
+            <h2 class="blog-post-h2">Programs</h2>
+            <p>
+                You can download the programs that I ran over in this blog post.
+            </p>
+            <ul>
+                <li><a href="./../../programs/C/factorial.c">Factorial in C using Recursion</a></li>
+                <li><a href="./../../programs/C/factorial.c">Factorial in C using a Loop</a></li>
+                <li><a href="./../../programs/C/recursive_array_print.c">Print the values in an array using recursion</a></li>
+                <li><a href="./../../programs/C/fibonacci.c">Fibonacci in C using Recursion</a></li>
+                <li><a href="./../../programs/C/linked_list.c">Inserting and Searching a LinkedList using both Loops and Recursion</a></li>
+            </ul>
+
+            <p>
+                For more checkout <strong>C Programming Language(2nd Edition) by Brian W. Kernighan and Dennis M. Ritchie</strong>.
+                <br><br>
+                <a href="./../c-posts.html">Go back to the C Programming Home Page</a>
+            </p>
+        </div>
+    </body>
+</html>
