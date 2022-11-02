@@ -40,7 +40,9 @@
                     2 <br>   
                     3 int main(int argc, char* argv[]) { <br>
                     4 &nbsp; &nbsp; printf("Hello, World!\n"); <br>
-                    5 }
+                    5 <br>
+                    6 &nbsp; &nbsp; return 0; <br>
+                    7 }
                 </code>
                 <br>
                 Above is your first C program. We start by inputting the Standard I/O(Input and Output) library so that you can use the <code>printf</code> function to display something on the screen.
@@ -92,7 +94,7 @@
                 <br><br>
                 Also note to print % on the screen we have to write it twice. This is because %d serves an important purpose so we have to "escape" it and tell C we actually want it to print a % not to print a variable.
                 <br><br>
-                A question you may have is what is modulus? If you have no seen this before then the best way to understand it is that modulus relates to remainder, so 1 divided 1 leaves no remainder but if we had 5 modulues 2 the remainder would be 1 as 2 goes into 5 twice(\(2 \times 2 = 4\)) leaving 1. For more on modulus arithmetic check out this <a href="https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/what-is-modular-arithmetic">article</a>.
+                A question you may have is what is modulus? If you have no seen this before then the best way to understand it is that modulus relates to remainder, so 1 divided 1 leaves no remainder but if we had 5 modulues 2 the remainder would be 1 as 2 goes into 5 twice(\(2 \times 2 = 4\)) leaving 1. For more on modulus arithmetic check out this <a href="https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/what-is-modular-arithmetic">article</a>. Let's consider some examples:
                 <br><br>
                 \(4 \% 2 = 0\), 4 divided by two does not leave a remainder.<br>
                 \(6 \% 3 = 0\), 6 divided by three does not leave a remainder.<br>
@@ -144,6 +146,166 @@
                 So in the first case we accessed the array position 2 and then incremented <code>i</code>, while in the second case we first increment <code>i</code> and accessed the integer at array index 3!
             </p>
 
+            <h2 class="blog-post-h2">Data Types</h2>
+            <p>
+                A <strong>Data type</strong>, in programming, is a classification that specifies which type of value a variable has and what type of mathematical, relational or logical operations can be applied to it without causing an error. 
+                Data types in C refer to an extensive system used for declaring variables or functions of different types. The type of a variable determines how much space it occupies in storage and how the bit pattern stored is interpreted. 
+                Popular data types are:<br>
+                &nbsp;&nbsp; (1) <code>int</code> - used to store integer values, positive or negative. <br>
+                &nbsp;&nbsp; (2) <code>double</code> - used to store floating-point values(values with decimal points), positive or negative. <br>
+                &nbsp;&nbsp; (3) <code>char</code> - used to store characters e.g. A to Z or 0 to 9. <br>
+                Almost all programs will use one of these data types. Integers are commonly used in loops and characters are needed to text based programs. But there is a wide range of data types to pick from in C outside these three, we will discuss them below.
+            </p>
+            <h3>Integer Types</h3>
+            <p>
+                The following table provides the details of standard integer types with their storage sizes and value ranges -
+            </p>
+            
+            <table class="table table-dark">
+                <tr>
+                    <th>Type</th>
+                    <th>Storage Size</th>
+                    <th>Value range</th>
+                </tr>
+                <tr>
+                    <td><code>char</code></td>
+                    <td>1 byte = 8 bits</td>
+                    <td>-128 to 127 or 0 to 255</td>
+                </tr>
+                <tr>
+                    <td><code>unsigned char</code></td>
+                    <td>1 byte</td>
+                    <td>0 to 255</td>
+                </tr>
+                <tr>
+                    <td><code>signed char</code></td>
+                    <td>1 byte</td>
+                    <td>-128 to 127</td>
+                </tr>
+                <tr>
+                    <td><code>int</code></td>
+                    <td>2 or 4 bytes(commonly 4 bytes)</td>
+                    <td>-32 768 to 32 767 or -2 147 483 648 to 2 147 483 647</td>
+                </tr>
+                <tr>
+                    <td><code>unsigned int</code></td>
+                    <td>2 or 4 bytes(commonly 4 bytes)</td>
+                    <td>0 to 65,535 or 0 to 4,294,967,295</td>
+                </tr>
+                <tr>
+                    <td><code>short</code></td>
+                    <td>2 bytes</td>
+                    <td>-32 768 to 32 767</td>
+                </tr>
+                <tr>
+                    <td><code>unsigned short</code></td>
+                    <td>2 bytes</td>
+                    <td>0 to 65 535</td>
+                </tr>
+                <tr>
+                    <td><code>long</code></td>
+                    <td>8 bytes or (4bytes for 32 bit OS)</td>
+                    <td>-9223372036854775808 to 9223372036854775807</td>
+                </tr>
+                <tr>
+                    <td><code>unsigned long</code></td>
+                    <td>8 bytes or (4bytes for 32 bit OS)</td>
+                    <td>0 to 18446744073709551615</td>
+                </tr>
+            </table>
+            <p>
+                To get the exact size of a type or a variable on a particular platform, you can use the <code>sizeof</code> operator. The expressions <code>sizeof(type)</code> yields the storage size of the object or type in bytes. 
+                <br><br>
+                <code>char</code> is reserved for storing characters and the <a href="https://www.asciitable.com/">ASCII</a> representation is used to represent characters using numeric values. Traditionally when you are using integers you first have to think about whether you want the values to be <code>signed</code> or <code>unsigned</code>. 
+                <code>signed</code> data types can be negative or positive while <code>unsigned</code> data types can only hold positive values. Once this decision is made you just have to think about the range of values you want to store, if you want to store values between -32 768 to 32 767 for example you will need 2 bytes and a <code>short</code> hence can be used. 
+                If you want more maybe the 4 bytes offered by <code>int</code> will do. If you want to do "big data" maybe you will need to the biggest data type <code>long</code>. Note the size of <code>int</code> and <code>long</code> differ depending on the setup of the operating system, 32-bit machines will offer less bytes than 64-bit machines. Most machines these days are 64-bit though so you may never need to worry about this. 
+                <br><br>
+                There may be a lot to think about but for most programs working with <code>int</code> will do! If you are not sure or are not going to deal with crazy ranges of values then <code>int</code> will be ideal in most situations.
+            </p>
+            <h3>Floating-Point Types</h3>
+            <p>
+                The following table provide the details of standard floating-point types with storage sizes and value ranges and their precision -
+            </p>
+            <table class="table table-dark">
+                <tr>
+                    <th>Type</th>
+                    <th>Storage Size</th>
+                    <th>Value range</th>
+                    <th>Precision</th>
+                </tr>
+                <tr>
+                    <td><code>float</code></td>
+                    <td>4 bytes</td>
+                    <td>1.2E-38 to 3.4E+38</td>
+                    <td>6 decimal places</td>
+                </tr>
+                <tr>
+                    <td><code>double</code></td>
+                    <td>8 bytes</td>
+                    <td>2.3E-308 to 1.7E+308</td>
+                    <td>15 decimal places</td>
+                </tr>
+                <tr>
+                    <td><code>long double</code></td>
+                    <td>10 bytes</td>
+                    <td>3.4E-4932 to 1.1E+4932</td>
+                    <td>19 decimal places</td>
+                </tr>
+            </table>
+            <p>
+                <strong>Note</strong>: The header file float.h defines macros that allow you to use these values and other details about the binary representation of real numbers in your programs.
+            </p>
+            <h3>The void Type</h3>
+            <p>
+                <code>void</code> is an interesting keyword, it just means nothing literally and or that no type is available. It most cases like with functions it specifies that no value is available. It is used in three kinds of situations:
+            </p>
+            <table class="table table-dark">
+                <tr>
+                    <th>Situation</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Function returns as void</td>
+                    <td>There are various functions in C which do not return any value or you can say they return void. A function with no return value has the return type as void. For example, <code>void exit (int status);</code></td>
+                </tr>
+                <tr>
+                    <td>Function arguments as void</td>
+                    <td>There are various functions in C which do not accept any parameter. A function with no parameter can accept a void. For example, <code>int rand(void);</code></td>
+                </tr>
+                <tr>
+                    <td>Pointers to void</td>
+                    <td>A pointer of type void * represents the address of an object, but not its type. For example, a memory allocation function <code>void *malloc( size_t size );</code> returns a pointer to void which can be casted to any data type.</td>
+                </tr>
+            </table>
+            <p>
+                So the type of a variable determines how much space it occupies in storage and how the bit pattern stored is interpreted. These types lead us to the following definitions:
+            </p>
+            <table class="table table-dark">
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><strong>Basic Types</strong></td>
+                    <td>They are arithmetic types and are further classified into: (a) integer types and (b) floating-point types.</td>
+                </tr>
+                <tr>
+                    <td><strong>Enumerated types</strong></td>
+                    <td>They are again arithmetic types and they are used to define variables that can only assign certain discrete integer values throughout the program.</td>
+                </tr>
+                <tr>
+                    <td><strong>The type void</strong></td>
+                    <td>The type specifier void indicates that no value is available.</td>
+                </tr>
+                <tr>
+                    <td><strong>Derived types</strong></td>
+                    <td>They include (a) Pointer types, (b) Array types, (c) Structure types, (d) Union types and (e) Function types.</td>
+                </tr>
+            </table>
+            <p>
+                The array types and structure types are referred collectively as the aggregate types. The type of a function specifies the type of the function's return value.
+            </p>
+
             <h2 class="blog-post-h2">Casting</h2>
             <p>
                 In most cases this topic is only relevant when working with doubles and integers. Since these types both relate to numeric types you can convert between the two, for example:
@@ -162,6 +324,38 @@
                 9 not 10 as we see when we do rounding. Make sure you watch out for this! It causes bugs in a lot of programs where mathematical precision is key.
                 <br>
                 Sometimes truncation is desired like in floor calculations in mathematics, then converting from double to integer like seen in line 6 is very useful.
+            </p>
+
+            <h2 class="blog-post-h2">Assignment Operators</h2>
+            <p>
+                <strong>Assignment operators</strong> are used to assign values to variables. For example, we use the assignment operator <code>=</code> to assign the value 10 to a variable called <code>x</code>: <code>int x = 10;</code>.
+                There are multiple <strong>Assignment operators</strong> available to us in C, they are:
+            </p>
+            <img src="images/assignment-operators.png">
+
+            <h2 class="blog-post-h2">Comparison Operators</h2>
+            <p>
+                <strong>Comparison operators</strong> are used to compare two values. The return value of a comparison is either <strong>true</strong> (<code>1</code>) or <strong>false</strong> (<code>0</code>). In the following example, we use the greater than operator <code>></code> to find out if 5 is greater than 3:
+                <br><br>
+                <code>
+                    int x = 5; <br>
+                    int y = 3; <br>
+                    printf("%d", x > y); // returns 1 (true) because 5 is greater than 3
+                </code>
+                <br><br>
+            </p>
+            <img src="images/comparison-operators.png">
+            <p>
+                This relates to boolean operations in C. The results of these comparisons given boolean values, true/false, which we can then use to determine program branching in <a href="c-conditionals.html">conditional statements</a>.
+            </p>
+
+            <h2 class="blog-post-h2">Logical Operators</h2>
+            <p>
+                Logical operators are used to determine the logic between variables or values:
+            </p>
+            <img src="images/logical-operators.png">
+            <p>
+                Logical operators perform logical operations on a given expression by joining two or more expressions or conditions. It can be used in various relational and conditional expressions.
             </p>
 
             <h2 class="blog-post-h2">Define Constants in C</h2>
@@ -209,11 +403,35 @@
                     7 */ <br>
                     8 int main(int argc, char* argv[]) { <br>
                     9 &nbsp; &nbsp; printf("Hello, World!\n"); <br>
-                    10 }
+                    10 <br>
+                    11 &nbsp; &nbsp; return 0; <br>
+                    12 }
                 </code>
                 <br><br>
                 Ensure to use comments to document your code, it's so easy to forget what a piece of code does, comments help jog our memory. Make sure your comments add value, if the function is called <code>a_plus_b</code> writing a comment like <code>// a plus b</code> does not add value, something like <code>// Returns the sum of a and b as an integer</code> is a lot more useful.
             </p>
+
+            <h2 class="blog-post-h2">Commandline Arguments in C</h2>
+            <p> 
+                In the previous example you will see that the <code>main</code> function was written as <code>int main(int argc, char* argv[])</code> instead of <code>int main()</code>. 
+                This is because the example used there include code logic relating to commandline arugments, C accepts the syntax for the main function in the both cases as long as the <code>main</code> in spelt correctly. 
+                Though if we want to get commandline arugments from a user in C then we need to use <code>int main(int argc, char* argv[])</code> as the commandline arguments will be in the <code>argv</code> array and <code>argc</code> tells us how many 
+                commandline arguments have been entered by the user. Note that there is always one argument relating to the C program itself so expect <code>argc</code> to be one more than what the user entered, for example, if a user enters the commandline arugment "text" then <code>argc</code> will be 2.
+                <br><br>
+                So how do you supply commandline arguments to a program? Simply run your program like so:<br>
+                <code>./program_executable "commandline argument 1" "commandline argument 2" ... "commandline argument N"></code>
+                <br>
+                Note you can enter as many commandline arguments as you want. These argument can be words or numbers, whatever you would like the user to enter. You can then use these arguments in your program to produce a particular state, use cases include:
+            </p>
+            <ul>
+                <li>The number of times you should run a process.</li>
+                <li>The name of the file you need to open to extract data from.</li>
+                <li>A user's username for the program.</li>
+                <li>The IP address of a server that the program needs to setup a connection to.</li>
+                <li>The values to place into an array and run computations with.</li>
+                <li>The mode for a game.</li>
+            </ul>
+            The list goes on!
 
             <h2 class="blog-post-h2">Programs</h2>
             <p>
@@ -222,6 +440,9 @@
             <ul>
                 <li><a href="./../../programs/C/hello.c">Hello, World!</a></li>
                 <li><a href="./../../programs/C/one_plus_one.c">One plus One</a></li>
+                <li><a href="./../../programs/C/integer_data_types.c">Integer Data Types</a></li>
+                <li><a href="./../../programs/C/float_data_types.c">Floating-Point Data Types</a></li>
+                <li><a href="./../../programs/C/arguments_in_c.c">Commandline arguments in C</a></li>
             </ul>
             
             <p>
