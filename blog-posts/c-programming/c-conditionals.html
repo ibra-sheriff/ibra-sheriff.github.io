@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+        <link rel="stylesheet" href="./../../styles/main.css">
+        <link rel="icon" href="./../../images/favicon.ico">
+        <title>Conditional Statements in C</title>
+    </head>
+    <body>
+        <div class="page-container-lg">
+            <h1 class="blog-post-h1">Conditional Statements in C</h1>
+            <p>
+                The syntax of the <code>if</code> statement in C is:
+                <br><br>
+                <code>
+                    if (test expression) { <br>
+                    &nbsp; &nbsp; // code <br>
+                    }
+                </code>
+                <br><br>
+                The <code>if</code> statement evaluates the test expression inside the parenthesis <code>()</code>. If the test expression is evaluated to true, statements inside the body of <code>if</code> are executed. If the test expression is evaluated to false, statements inside the body of <code>if</code> are not executed.
+                <br><br>
+                The <code>if</code> statement comes with an optional <code>else</code> clause. If the <code>else</code> clause is added then if the text expression in the if statement is false then the <code>else</code> statement will be executed. The syntax of the <code>if...else</code> statement is:
+                <br><br>
+                <code>
+                    if (test expression) { <br>
+                        &nbsp; &nbsp; // run code if test expression is true <br>
+                    } else { <br>
+                        &nbsp; &nbsp; // run code if test expression is false <br>
+                    }
+                </code>
+                <br><br>
+                So using this the conditional statements <code>if</code> and <code>else</code> if can control the program flow to execute certain code blocks if certain conditions are satisfied. This can be useful not only for executing algorithms but for handlding user input to control the program. For example, if the user types "quit" 
+                we may want to close the program, or if the user input invalid input like a letter instead of a number we can offer validation and let the user know they made a mistake. <strong>Conditional Statement</strong> can take our programs to the next level.
+            </p>
+
+            <h2 class="blog-post-h2">if...else Ladder</h2>
+            <p>
+                The <code>if...else</code> statement executes two different codes depending upon whether the test expression is true or false. Sometimes, a choice has to be made from more than 2 possibilities. 
+                The <code>if...else</code> ladder allows you to check between multiple test expressions and execute different statements. It looks like so:
+                <br><br>
+                <code>
+                    if (test expression1) { <br>
+                    &nbsp; &nbsp; // statement(s) <br>
+                    } <br>
+                    else if(test expression2) { <br>
+                    &nbsp; &nbsp; // statement(s) <br>
+                    } <br>
+                    else if (test expression3) { <br>
+                    &nbsp; &nbsp; // statement(s) <br>
+                    } <br>
+                    . <br>
+                    . <br>
+                    . <br>
+                    else { <br>
+                    &nbsp; &nbsp; // statement(s) <br>
+                    }
+                </code>
+                <br><br>
+                Here if the first test expression is not met the program will check the second text expression this will continue until a test expression is evaluated as true and that code block executed. If all of the <code>else if</code> test expression are false then the optional <code>else</code> statement is executed.
+                <br><br>
+                Note just like how you can have nested loop statements in C you can also have nested conditionals statements. This means you can place multiple <code>if</code> statements in a <code>if</code> statement. Check out the example below:
+                <br><br>
+                <code>
+                    1 #include <stdio.h> <br>
+                    2 <br>
+                    3 int main() { <br>
+                    4 &nbsp; &nbsp; int number1, number2; <br>
+                    5 &nbsp; &nbsp; printf("Enter two integers: "); <br>
+                    6 &nbsp; &nbsp; scanf("%d %d", &number1, &number2); <br>
+                    7 <br>
+                    8 &nbsp; &nbsp; if (number1 >= number2) { <br>
+                    9 &nbsp; &nbsp; &nbsp; &nbsp;if (number1 == number2) { <br>
+                    10 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;printf("Result: %d = %d",number1,number2); <br>
+                    11 &nbsp; &nbsp; &nbsp; &nbsp; } else { <br>
+                    12 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;printf("Result: %d > %d", number1, number2); <br>
+                    13 &nbsp; &nbsp; &nbsp; &nbsp; } <br>
+                    14 &nbsp; &nbsp; } else { <br>
+                    15 &nbsp; &nbsp; &nbsp; &nbsp; printf("Result: %d < %d",number1, number2); <br>
+                    16 &nbsp; &nbsp; } <br>
+                    17 <br>
+                    18 &nbsp; &nbsp; return 0; <br>
+                    19 }
+                </code>
+                <br><br>
+                Cool right! So now we can check one condition in one <code>if</code> statement and another condition in the next <code>if</code> statement. This can be useful in assembly line logic, or cases where we do not want to run a computational test expression when we can run something simpler to reduce the number times we run the expensive check.
+            </p>
+
+            <h2 class="blog-post-h2">The switch statement, an alternative to the if...else Ladder</h2>
+            <p>
+                If you are running multiple test expressions with the same variable you may find the <code>switch</code> statement a great alternative to the <code>if...else</code> Ladder. A <code>switch</code> is a conditional statement which allows a variable to be tested for equality against a list of values. Each value is called a case, and the variable being switched on is checked for each switch case. 
+                It has the following syntax in C:
+                <br><br>
+                <code>
+                    switch(expression) { <br>
+                    &nbsp; &nbsp; case constant-expression: <br>
+                    &nbsp; &nbsp; &nbsp; &nbsp; statement(s); <br>
+                    &nbsp; &nbsp; &nbsp; &nbsp; break; /* optional */ <br>
+                    <br>
+                    &nbsp; &nbsp; case constant-expression: <br>
+                    &nbsp; &nbsp; &nbsp; &nbsp; statement(s); <br>
+                    &nbsp; &nbsp; &nbsp; &nbsp; break; /* optional */ <br>
+                    <br>
+                    &nbsp; &nbsp; /* you can have any number of case statements */ <br>
+                    &nbsp; &nbsp; default: /* Optional */ <br>
+                    &nbsp; &nbsp; &nbsp; &nbsp; statement(s); <br>
+                    } <br>
+                </code>
+                <br><br>
+                The expression used in a <code>switch</code> statement must have an <strong>integral</strong> or <strong>enumerated type</strong>. 
+                You can have any number of case statements within a switch. Each case is followed by the value to be compared to and a colon.
+                <br><br>
+                The <code>constant-expression</code> for a case must be the same data type as the variable in the switch, and it must be a constant or a literal.
+                <br><br>
+                When the variable being switched on is equal to a case, the statements following that case will execute until a <code>break</code> statement is reached. When a <code>break</code> statement is reached, the switch terminates, and the flow of control jumps to the next line following the <code>switch</code> statement. 
+                Not every case needs to contain a <code>break</code>. If no <code>break</code> appears, the flow of control will fall through to subsequent cases until a <code>break</code> is reached.
+                <br><br>
+                A <code>switch</code> statement can have an optional <code>default</code> case, which must appear at the end of the <code>switch</code>. The default case can be used for performing a task when none of the cases is true. No <code>break</code> is needed in the <code>default</code> case.
+            </p>
+
+            <h2 class="blog-post-h2">Videos you can watch to get further explanations on Conditional Statements in C</h2>
+            <div>
+                <h4><a href="https://www.youtube.com/watch?v=vT-GyM1LTic">The <code>if</code> Statement</a></h4>
+                <div>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/vT-GyM1LTic" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div>
+                <h4><a href="https://www.youtube.com/watch?v=FSxYyHLF_9A">The <code>switch</code> Statement</a></h4>
+                <div>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/FSxYyHLF_9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div>
+                <h4><a href="https://www.youtube.com/watch?v=zAgsoGew8jc">The <code>else if</code> Statement</a></h4>
+                <div>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/zAgsoGew8jc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h2 class="blog-post-h2">Programs</h2>
+            <p>
+                You can download the programs that I ran over in this blog post.
+            </p>
+            <ul>
+                <li><a href="./../../programs/C/if_negative.c">If Number is Negative</a></li>
+                <li><a href="./../../programs/C/if_even_else_odd.c">If Even else Odd</a></li>
+                <li><a href="./../../programs/C/if_else_if_else.c">If Else If Else</a></li>
+                <li><a href="./../../programs/C/switch_in_c.c">Switch statement in C</a></li>
+            </ul>
+            
+            <p>
+                For more checkout <strong>C Programming Language(2nd Edition) by Brian W. Kernighan and Dennis M. Ritchie</strong>.
+                <br><br>
+                <a href="./../c-posts.html">Go back to the C Programming Home Page</a>
+            </p>
+        </div>
+    </body>
+</html>
